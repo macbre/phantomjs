@@ -14,7 +14,7 @@ apt-get install -y build-essential git flex bison gperf python ruby git libfontc
 echo
 
 echo "Preparing to download Debian source package..."
-echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
+echo "deb-src http://ftp.pl.debian.org/debian/ jessie main" >> /etc/apt/sources.list
 apt-get -y update
 echo
 
@@ -24,7 +24,8 @@ if [ `getconf LONG_BIT` -eq 32 ]; then
 fi
 echo "Recompiling OpenSSL for ${OPENSSL_TARGET}..." && sleep 1
 apt-get source openssl
-cd openssl-1.0.1e
+ls openssl-*
+cd openssl-1.0.1t
 OPENSSL_FLAGS='no-idea no-mdc2 no-rc5 no-zlib enable-tlsext no-ssl2 no-ssl3 no-ssl3-method enable-rfc3779 enable-cms'
 ./Configure --prefix=/usr --openssldir=/etc/ssl --libdir=lib ${OPENSSL_FLAGS} ${OPENSSL_TARGET}
 make depend && make && make install
@@ -33,7 +34,8 @@ echo
 
 echo "Building the static version of ICU library..." && sleep 1
 apt-get source icu
-cd icu-4.8.1.1/source
+ls icu*
+cd icu-52.1/source
 ./configure --prefix=/usr --enable-static --disable-shared
 make && make install
 cd ..
