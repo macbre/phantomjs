@@ -18,7 +18,7 @@ of the PhantomJS source repository:
 
 ```bash
  $ git clean -xfd .
- $ docker run -v $PWD:/src debian:wheezy /src/deploy/docker-build.sh
+ $ docker run -v $PWD:/src debian:jessie /src/deploy/docker-build.sh
 ```
 
 For the 32-bit version:
